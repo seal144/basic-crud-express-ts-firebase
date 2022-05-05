@@ -1,0 +1,28 @@
+1. Created config.js after creating firestore on firebase
+2. npm init
+3. install packages: 
+  npm i express
+  npm i firebase
+  npm i cors //corsy for savety, dont know how to use
+  npm i nodemon -D
+  npm i typescript -D
+  npm i ts-node -D
+  npm i @types/node -D
+  npm i @types/express -D
+
+4. Created config foe tsc with:
+  npx tsc --init
+
+5. Set in tsconfig.json:
+  "outDir": "./dist"
+  "rootDir": "./src"
+  "moduleResolution": "node"
+
+6. Set scripts in package.json:
+  "Scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "npx tsc -p ." //nie wiem czy jest tutaj błąd
+  }
+
+7. git init and start coding!
