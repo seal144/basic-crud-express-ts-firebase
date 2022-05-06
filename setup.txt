@@ -20,8 +20,8 @@
 
 6. Set scripts in package.json:
   "Scripts": {
-    "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon ./dist/index.js",
     "build": "npx tsc -p ." //nie wiem czy jest tutaj błąd
   }
 
