@@ -4,8 +4,6 @@ import { getFirestore, collection, Firestore, CollectionReference } from 'fireba
 import firebaseConfig from './firebaseConfig';
 
 const appFirebase: FirebaseApp = initializeApp(firebaseConfig);
-const db: Firestore = getFirestore(appFirebase);
+export const db: Firestore = getFirestore(appFirebase);
 
-const users: CollectionReference = collection(db, 'users');
-
-export default users;
+export const users: CollectionReference = collection(db, 'users');

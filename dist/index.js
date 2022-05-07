@@ -15,13 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const lite_1 = require("firebase/firestore/lite");
-const configDB_1 = __importDefault(require("./configDB"));
+const configDB_1 = require("./configDB");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let userDocs = [];
-    yield (0, lite_1.getDocs)(configDB_1.default).then((snapshot) => {
+    yield (0, lite_1.getDocs)(configDB_1.users).then((snapshot) => {
         snapshot.forEach((doc) => {
             userDocs.push({ id: doc.id, name: doc.data().name, age: doc.data().age });
             // userDocs.push({ id: doc.id, ...doc.data() });
@@ -29,11 +29,27 @@ app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     res.send(userDocs);
 }));
-app.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.post('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
-    yield (0, lite_1.addDoc)(configDB_1.default, data);
+    yield (0, lite_1.addDoc)(configDB_1.users, data);
     res.send({ message: 'User added' });
+}));
+app.patch('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.body.id;
+    delete req.body.id;
+    const dataUpdate = req.body;
+    const docRef = (0, lite_1.doc)(configDB_1.db, 'users', id);
+    yield (0, lite_1.updateDoc)(docRef, dataUpdate);
+    res.send({ message: 'updated' });
 }));
 app.listen(4000, () => {
     console.log('app listening on port 4000');
 });
+//pliki TS robily mi jeden scpope w innym projekcie
+//czy wiesz jak zrobić żeby formatować nie na save a na przycisk
+//czy każdy formatuje jak chce w pracy?
+//jak pracujesz z TS to robisz cały czas kompilację? i de fakto używasz tylko pliki js są uruchamiane?
+//jak robisz import to jakoś to typujesz?
+//w app.get wiem, że // userDocs.push({ id: doc.id, ...doc.data() }); będzie dobrze ale TS wywala mi błąd
+// w app.post niby typuje, że data: User. a de facto jak dziala server to i tak mogę wrzucić tam co chce, czyli TS pomaga tylko przy pisaniu a nie przy działaniu?
+//Jak się robi w praktyce? czy interface jest w jednym pliku
