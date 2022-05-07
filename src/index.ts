@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import { addDoc, doc, DocumentReference, getDocs, UpdateData, updateDoc } from 'firebase/firestore/lite';
+import { addDoc, deleteDoc, doc, DocumentReference, getDocs, UpdateData, updateDoc } from 'firebase/firestore/lite';
 
 import { db, users } from './configDB';
 
@@ -37,6 +37,15 @@ app.patch('/users', async (req: Request, res: Response) => {
   await updateDoc(docRef, dataUpdate);
 
   res.send({ message: 'updated' });
+});
+
+app.delete('/users', async (req: Request, res: Response) => {
+  const id: string = req.body.id;
+  const docRef: DocumentReference = doc(db, 'users', id);
+
+  await deleteDoc(docRef);
+
+  res.send({ message: 'deleted' });
 });
 
 app.listen(4000, () => {
