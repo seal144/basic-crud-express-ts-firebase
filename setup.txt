@@ -9,6 +9,7 @@
   npm i ts-node -D
   npm i @types/node -D
   npm i @types/express -D
+  npm i @types/cors -D
 
 4. Created config foe tsc with:
   npx tsc --init
