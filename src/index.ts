@@ -65,16 +65,3 @@ interface UserUpdate {
   name?: string;
   age?: number;
 }
-
-//pliki TS robily mi jeden scpope w innym projekcie
-//czy wiesz jak zrobić żeby formatować nie na save a na przycisk
-
-//czy każdy formatuje jak chce w pracy?
-
-//jak pracujesz z TS to robisz cały czas kompilację? i de fakto używasz tylko pliki js są uruchamiane?
-//jak robisz import to jakoś to typujesz?
-//w app.get wiem, że // userDocs.push({ id: doc.id, ...doc.data() }); będzie dobrze ale TS wywala mi błąd
-
-// w app.post niby typuje, że data: User. a de facto jak dziala server to i tak mogę wrzucić tam co chce, czyli TS pomaga tylko przy pisaniu a nie przy działaniu?
-
-//Jak się robi w praktyce? czy interface jest w jednym pliku

@@ -42,14 +42,12 @@ app.patch('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     yield (0, lite_1.updateDoc)(docRef, dataUpdate);
     res.send({ message: 'updated' });
 }));
+app.delete('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.body.id;
+    const docRef = (0, lite_1.doc)(configDB_1.db, 'users', id);
+    yield (0, lite_1.deleteDoc)(docRef);
+    res.send({ message: 'deleted' });
+}));
 app.listen(4000, () => {
     console.log('app listening on port 4000');
 });
-//pliki TS robily mi jeden scpope w innym projekcie
-//czy wiesz jak zrobić żeby formatować nie na save a na przycisk
-//czy każdy formatuje jak chce w pracy?
-//jak pracujesz z TS to robisz cały czas kompilację? i de fakto używasz tylko pliki js są uruchamiane?
-//jak robisz import to jakoś to typujesz?
-//w app.get wiem, że // userDocs.push({ id: doc.id, ...doc.data() }); będzie dobrze ale TS wywala mi błąd
-// w app.post niby typuje, że data: User. a de facto jak dziala server to i tak mogę wrzucić tam co chce, czyli TS pomaga tylko przy pisaniu a nie przy działaniu?
-//Jak się robi w praktyce? czy interface jest w jednym pliku
